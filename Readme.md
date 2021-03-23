@@ -1,8 +1,8 @@
-<h4 align="center">
+<h2 align="center">
 	🚧  Rest Api Gobarber 🚀 Em construção...  🚧
-</h4>
+</h2>
 
-## 🛠 Tecnologias
+### 🛠 Tecnologias
 
 Tecnologias sendo utilizadas na construção do projeto:
 
