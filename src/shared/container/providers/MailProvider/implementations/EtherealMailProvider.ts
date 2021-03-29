@@ -34,16 +34,17 @@ export default class EtherealMailProvider implements IMailProvider {
     subject,
     templateData,
   }: ISendMailDTO): Promise<void> {
-    from: {
-      name: from?.name || 'Equipe GoBarber',
-      address: from?.email || 'equipe@gobarber.com.br',
-    },
-    to: {
-      name: to.name,
-      address: to.email,
-    },
-    subject,
-    html: await this.mailTemplateProvider.parse(templateData),
+    const message = await this.client.sendMail({
+      from: {
+        name: from?.name || 'Equipe GoBarber',
+        address: from?.email || 'equipe@gobarber.com.br',
+      },
+      to: {
+        name: to.name,
+        address: to.email,
+      },
+      subject,
+      html: await this.mailTemplateProvider.parse(templateData),
     });
 
     console.log('Message sent: %s', message.messageId);
