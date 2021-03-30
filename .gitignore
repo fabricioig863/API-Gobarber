@@ -1,5 +1,7 @@
 node_modules
+
 coverage
+
 tmp/*
 .env
 tmp/*
@@ -7,5 +9,4 @@ tmp/uploads/*
 !tmp/uploads
 !tmp/uploads/.gitkeep
 build/
-.vscode/
 ormconfig.json
