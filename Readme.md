@@ -53,19 +53,41 @@ O Layout pode ser conferido nestes repositórios:
 $ git clone https://github.com/fabricioig863/API-Gobarber.git
 ```
 
-### Iniciando o Projeto
+# Iniciando o Projeto
 
+## Instale as dependências
 ```bash
-# Vá para o repositório do projeto
-$ cd API-Gobarber
-
-# Instale as dependencias
 $ yarn
 
-# Para iniciar o servidor
-$ yarn start
+# Faça uma cópia de '.env.example' para '.env'
+# ela é definida com SUAS variáveis de ambiente.
+# As variáveis aws não precisam ser preenchidas para o ambiente dev
+$ cp .env.example .env
 
+# Crie a instância do postgreSQL usando docker
+$ docker run --name gobarber-postgres -e POSTGRES_USER = docker \
+               -e POSTGRES_DB = gobarber -e POSTGRES_PASSWORD = docker \
+               -p 5433: 5433 -d postgres
+
+# Crie a instância do mongoDB usando docker
+$ docker run --name gobarber-mongodb -p 27017: 27017 -d -t mongo
+
+# Crie a instância do redis usando docker
+$ docker run --name gobarber-redis -p 6379: 6379 -d -t redis: alpino
+
+# Faça uma cópia de 'ormconfig.example.json' para 'ormconfig.json'
+# e defina os valores, se eles não forem preenchidos,
+# para conectar-se ao contêiner do banco de dados do docker
+$ cp ormconfig.example.json ormconfig.json
+
+# Assim que os serviços estiverem em execução, execute as migrações
+$ yarn typeorm migration: run
+
+# Para terminar, execute o serviço api
+$ yarn dev: server
 ```
+
+
 ## Licença
 
 Este projeto está sob a licença MIT. Consulte o [LICENSE](LICENSE.md) para obter detalhes.
